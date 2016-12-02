@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/2.css" type="text/css">
+</head>
+<body>
+<div id="wrapper">
+    <!-- 页眉-->
+    <header>
+        <p class="description">A.D.J Salinger Fun Club</p>
+        <h1><a href="index.php">Raise High the Roof Dream</a> </h1>
+    </header>
+    <!-- 导航-->
+    <nav>
+        <ul>
+            <li><a href="php/books.php">Books</a> </li>
+            <li><a href="#">Stories</a> </li>
+            <li><a href="#">Quotes</a> </li>
+            <li><a href="php/login.php">Login</a> </li>
+            <li><a href="php/register.php">Register</a> </li>
+        </ul>
+    </nav>
+    <div id="sidebar">
+        <h2>Favorite Quotes</h2>
+        <p class="news">i dont exactly know what i mean by that,but i mean it.<br><em>The Catcher in the Rye</em></p>
+        <p class="news">i dont exactly know what i mean by that,but i mean it.<br><em>The Catcher in the Rye</em></p>
+        <p class="news">i dont exactly know what i mean by that,but i mean it.<br><em>The Catcher in the Rye</em></p>
+        <p class="news">i dont exactly know what i mean by that,but i mean it.<br><em>The Catcher in the Rye</em></p>
+        <p class="news">i dont exactly know what i mean by that,but i mean it.<br><em>The Catcher in the Rye</em></p>
+
+    </div>
+    <!--可变内容开始-->
+    <article>
+        <h2>Welcome to A.D.J Salinger Fun Club</h2>
+        <p>
+            There are few television quiz distinctions greater than triumphing in the series final. Peterhouse, Cambridge,
+            did so on Monday, thanks to their knowledge of prime numbers, Mesopotamian architecture and Scotland in the
+            1690s. They beat St John's College, Oxford, by 215 points to 30.
+        </p>
+        <h2>Another Header</h2>
+        <p>
+            Pearson sets the approximately 150 students who apply to represent Manchester each year a 100-question
+
+        </p>
+    </article>
+    <!-- 边栏-->
+
+    <!-- 页脚-->
+    <footer>
+        <P>Template design by <a href="http://user.qzone.qq.com/467592234/main">xianxian</a></P>
+        <p>&copy;2016</p>
+        <p>版权归创作者所有</p>
+    </footer>
+
+
+
+</div>
+<form action="php/register.php" method="post">
+    <p>First name: <input type="text" name="fname" required size="20" value="<?php if(isset($_POST['fname']))
+    {print htmlspecialchars($_POST[fname]); }?>">  </p>
+</form>
+
+</body>
+</html>

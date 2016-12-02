@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>购物网楼层导航特效定位</title>
+
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			font-size: 12px;
+			line-height: 1.7em;
+		}
+
+		li {
+			list-style: none;
+		}
+		li a {
+			text-decoration: none;
+		}
+		#content {
+			width: 80%;
+			position: absolute;
+			top: 2%;
+			left: 10%;
+		}
+		#content h1 {
+			color: #0088bb;
+		}
+		#content .item {
+			padding: 20px;
+			margin: 20px;
+			border: 1px dotted #0088bb;
+			text-align: center;
+		}
+		#content .item h2{
+			font-size: 16px;
+			font-weight: bold;
+			border-bottom: 2px solid #008811;
+			margin: 20px;
+		}
+		#content .item li {
+			display: inline;
+			margin: 10px;
+		}
+		#content .item li a img{
+			width: 28%;
+			height: auto;
+		}
+		#menu {
+		 	float: right;
+		 	position: fixed;
+		 	top: 40%;
+		 	left: 90%;
+		}
+		#menu ul li {
+			margin-top: 2px;
+			width: 80px;
+			height: 40px;
+			background-color: #eeffee;
+			text-align: center;
+
+		}
+		#menu ul li a {
+			display: block;
+			width: 80px;
+			height: 40px;
+			line-height: 40px;
+			color: #000;
+		}
+		#menu ul li a:hover{
+			background-color: #0088bb;
+		} 
+		.current {
+			background-color: #0088bb;
+		}
+	</style>
+	<script src='jquery-3.1.1.js'></script>
+	<script>
+		$(function() {
+			
+			$(window).scroll(function() {
+				var top = $(document).scrollTop(); //滚动条滚动的距离
+				var menu = $('#menu');
+				var items = $('#content').find('.item'); //使用id查找比使用class查找效率更高
+				var currentId = ''; //代表当前楼层的id
+				items.each(function(){
+					var m = $(this);
+					var itemTop = m.offset().top; //判断每个item距离顶端的距离
+					if(top > itemTop*0.9) { //如果鼠标滚动的距离大于item距离的0.9倍，就改变选中菜单
+						currentId = '#' + m.attr('id'); 
+					} else {
+						return false;
+					}
+				});
+				//给相应item的menu设置current 这个class，取消其他item的current class
+				var currentLink = menu.find('.current'); //从menu里找到当前选中的菜单
+				if(currentId && currentLink.attr('href')!=currentId) {  
+					currentLink.removeClass('current'); //移除class
+					menu.find('[href="' + currentId + '"]').addClass('current'); 
+					//找到选中的id对应的菜单项，添加class
+				} 
+			});
+		})
+	</script>
+</head>
+<body>
+	<div id="menu">
+		<ul>
+			<li><a href="#item1" class="current">1F 男装</a></li> <!-- html5使用id值作为锚点链接 -->
+			<li><a href="#item2">2F 女装</a></li>
+			<li><a href="#item3">3F 美妆</a></li>
+			<li><a href="#item4">4F 母婴</a></li>
+			<li><a href="#item5">5F 家居</a></li>
+		</ul>
+	</div>
+
+	<div id="content">
+		<h1>简易购物网</h1>
+		<div id='item1' class="item">
+			<h2>F1 男装</h2>
+			<li><a href="#"><img src="1.jpg" alt=""></a></li>
+			<li><a href="#"><img src="1.jpg" alt=""></a></li>
+			<li><a href="#"><img src="1.jpg" alt=""></a></li>
+			<li><a href="#"><img src="1.jpg" alt=""></a></li>
+			<li><a href="#"><img src="1.jpg" alt=""></a></li>
+			<li><a href="#"><img src="1.jpg" alt=""></a></li>
+			<li><a href="#"><img src="1.jpg" alt=""></a></li>
+			<li><a href="#"><img src="1.jpg" alt=""></a></li>
+			<li><a href="#"><img src="1.jpg" alt=""></a></li>
+		</div>
+
+		<div id='item2' class="item">
+			<h2>F2 女装</h2>
+			<li><a href="#"><img src="2.jpg" alt=""></a></li>
+			<li><a href="#"><img src="2.jpg" alt=""></a></li>
+			<li><a href="#"><img src="2.jpg" alt=""></a></li>
+			<li><a href="#"><img src="2.jpg" alt=""></a></li>
+			<li><a href="#"><img src="2.jpg" alt=""></a></li>
+			<li><a href="#"><img src="2.jpg" alt=""></a></li>
+			<li><a href="#"><img src="2.jpg" alt=""></a></li>
+			<li><a href="#"><img src="2.jpg" alt=""></a></li>
+			<li><a href="#"><img src="2.jpg" alt=""></a></li>
+		</div>
+
+		<div id='item3' class="item">
+			<h2>F3 美妆</h2>
+			<li><a href="#"><img src="3.jpg" alt=""></a></li>
+			<li><a href="#"><img src="3.jpg" alt=""></a></li>
+			<li><a href="#"><img src="3.jpg" alt=""></a></li>
+			<li><a href="#"><img src="3.jpg" alt=""></a></li>
+			<li><a href="#"><img src="3.jpg" alt=""></a></li>
+			<li><a href="#"><img src="3.jpg" alt=""></a></li>
+			<li><a href="#"><img src="3.jpg" alt=""></a></li>
+			<li><a href="#"><img src="3.jpg" alt=""></a></li>
+			<li><a href="#"><img src="3.jpg" alt=""></a></li>
+		</div>
+
+		<div id='item4' class="item">
+			<h2>F4 母婴</h2>
+			<li><a href="#"><img src="4.jpg" alt=""></a></li>
+			<li><a href="#"><img src="4.jpg" alt=""></a></li>
+			<li><a href="#"><img src="4.jpg" alt=""></a></li>
+			<li><a href="#"><img src="4.jpg" alt=""></a></li>
+			<li><a href="#"><img src="4.jpg" alt=""></a></li>
+			<li><a href="#"><img src="4.jpg" alt=""></a></li>
+			<li><a href="#"><img src="4.jpg" alt=""></a></li>
+			<li><a href="#"><img src="4.jpg" alt=""></a></li>
+			<li><a href="#"><img src="4.jpg" alt=""></a></li>
+		</div>
+
+		<div id='item5' class="item">
+			<h2>F5 家居</h2>
+			<li><a href="#"><img src="5.jpg" alt=""></a></li>
+			<li><a href="#"><img src="5.jpg" alt=""></a></li>
+			<li><a href="#"><img src="5.jpg" alt=""></a></li>
+			<li><a href="#"><img src="5.jpg" alt=""></a></li>
+			<li><a href="#"><img src="5.jpg" alt=""></a></li>
+			<li><a href="#"><img src="5.jpg" alt=""></a></li>
+			<li><a href="#"><img src="5.jpg" alt=""></a></li>
+			<li><a href="#"><img src="5.jpg" alt=""></a></li>
+			<li><a href="#"><img src="5.jpg" alt=""></a></li>
+		</div>
+	</div>
+</body>
+</html>

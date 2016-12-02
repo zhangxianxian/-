@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		* {
+			font-size: 16px;
+		}
+		input, select{
+			margin-top: 15px;
+			width: 120px;
+		}
+		label {
+			width: 60px;
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+	<h2>员工查询</h2>
+	<form action="">
+		<label for="">ID</label>
+		<input type="text" id="keyWord">
+		<input type="button" value="search" id="search"><br><br><br>
+		<label for="">结果：</label><p id="res">输出结果：</p>
+	</form>
+	<h2>员工录入</h2>
+	<form action="">
+		<label for="">name</label> <input type="text" id="name"> <br>
+		<label for="">ID</label> <input type="text" id="ID"> <br>
+		<label for="">sex</label>
+		<select name="" id="staffSex">
+			<option value="male">male</option>
+			<option value="female">female</option>
+		</select> 
+		<input type="button" value="create" id="save"><br><br><br>
+		<label for="">结果：</label> <p id="createResult"></p>
+	</form>
+	
+	<script>
+		document.getElementById('search').onclick = function(){
+			//发送ajax查询请求且处理
+			var request = new XMLHttpRequest();
+			request.onreadystatechange = function(){ //监听readyStatechange事件
+				if(request.readyState ===4){
+					if(request.status === 200) {
+						var data = JSON.parse(request.responseText); //解析json数据
+						if(data.success) { //吐过执行成功
+							document.getElementById('res').innerHTML = data.msg; //局部更新员工数据
+						}
+						else {
+							document.getElementById('res').innerHTML = "出现错误：" + data.msg;
+						}
+					}
+					else {
+						alert('发生错误' + request.status);
+					}
+				} 
+			}
+			// request.open('GET','http://localhost/ajax/gets.php?number=' + document.getElementById('keyWord').value);
+			request.open('GET','gets.php?number=' + document.getElementById('keyWord').value);
+			request.send();
+		}
+
+		document.getElementById('save').onclick = function() {
+			var data = "name="+document.getElementById('name').value+
+						'&number='+document.getElementById('ID').value+
+						'&sex='+document.getElementById('staffSex').value;
+			var request = new XMLHttpRequest();
+			request.onreadystatechange = function(){ //监听readyStatechange事件
+				if(request.readyState ===4){
+					if(request.status === 200) {
+						var data = JSON.parse(request.responseText); //解析json数据
+						if(data.success) { //如果执行成功
+							document.getElementById('createResult').innerHTML = data.msg; //局部更新员工数据
+						}
+						else {
+							document.getElementById('createResult').innerHTML = "出现错误：" + data.msg;
+						}
+					}
+					else {
+						alert('发生错误' + request.status);
+					}
+				} 
+			}
+			request.open('POST','gets.php');
+			request.setRequestHeader("Content-Type","application/x-www-form-urlencoded");  
+			request.send(data);
+		}
+	</script>
+</body>
+</html>

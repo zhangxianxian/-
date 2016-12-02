@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>css 实现</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		nav {
+			background-color: #eee;
+			height: 40px;
+			width: 1200px;
+			margin: 0 auto;
+		}
+		nav ul {
+			list-style: none;
+		}
+		nav ul li {
+			float: left;
+			line-height: 40px;
+			text-align: center;
+			position: relative;
+		}
+		nav ul li a{
+			text-decoration: none;
+			color: #000;
+			display: block;
+			padding: 0 10px;
+		}
+		nav ul li a:hover {
+			background-color: #666;
+			color: #fff;
+		}
+		.second{
+			position: absolute; /* 定位二级菜单使其在相对应的一级菜单下方出现 */
+			top: 40px;
+			left: 0;
+			display: none;  /* 二级菜单设置为 display: none 在正常情况下看不见 */
+		}
+		.second li{
+			float: none;
+			background-color: #eee;
+			margin-top: 3px;
+		}
+		.second li a:hover{
+			background-color: blue;
+		}
+		nav ul li:hover ul{
+			display: block; /* 经过一级菜单的时候将二级菜单属性设置为display: block; 将其显示 */
+		}
+	</style>
+</head>
+<body>
+	<nav>
+		<ul>
+			<li><a href="#">首页</a></li>
+			<li><a href="">课程大厅</a>
+				<ul class="second">
+					<li><a href="#">Node.js</a></li>
+					<li><a href="#">Html</a></li>
+					<li><a href="#">CSS</a></li>
+					<li><a href="#">javascript</a></li>
+				</ul>
+			</li>
+			<li><a href="">学习中心</a>
+				<ul class="second">
+					<li><a href="#">Node.js</a></li>
+					<li><a href="#">Html</a></li>
+					<li><a href="#">CSS</a></li>
+					<li><a href="#">javascript</a></li>
+				</ul>
+			</li>
+			<li><a href="">经典案例</a>
+				<ul class="second">
+					<li><a href="#">Node.js</a></li>
+					<li><a href="#">Html</a></li>
+					<li><a href="#">CSS</a></li>
+					<li><a href="#">javascript</a></li>
+				</ul>
+			 </li>
+		</ul>
+	</nav>
+</body>
+</html>

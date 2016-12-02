@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>js 实现下拉菜单</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		nav {
+			background-color: #eee;
+			height: 40px;
+			width: 1200px;
+			margin: 0 auto;
+		}
+		nav ul {
+			list-style: none;
+		}
+		nav ul li {
+			float: left;
+			line-height: 40px;
+			text-align: center;
+			position: relative;
+		}
+		nav ul li a{
+			text-decoration: none;
+			color: #000;
+			display: block;
+			padding: 0 10px;
+		}
+		nav ul li a:hover {
+			background-color: #666;
+			color: #	fff;
+		}
+		.second{
+			position: absolute; /* 定位二级菜单使其在相对应的一级菜单下方出现 */
+			top: 40px;
+			left: 0;
+		}
+		.second li{
+			float: none;
+			background-color: #eee;
+			margin-top: 3px; /* 隔开 */
+		}
+		.second li a:hover{
+			background-color: blue;
+		}
+		
+	</style>
+</head>
+<body>
+	<nav>
+		<ul>
+			<li><a href="#">首页</a></li>
+			<li onmouseover="showsubmenu(this)" onmouseout="hidesubmenu(this)"><a href="">课程大厅</a>
+				<ul class="second">
+					<li><a href="#">Node.js</a></li>
+					<li><a href="#">Html</a></li>
+					<li><a href="#">CSS</a></li>
+					<li><a href="#">javascript</a></li>
+				</ul>
+			</li>
+			<li><a href="">学习中心</a>
+				
+			</li>
+			<li><a href="">经典案例</a>
+				
+			 </li>
+		</ul>
+	</nav>
+
+	<script>
+		function showsubmenu(li){
+			var submenu = li.getElementsByTagName('ul')[0]; //表示获取li下的第一个ul块
+			submenu.style.display = 'block';
+		}
+		function hidesubmenu(li){
+			var submenu = li.getElementsByTagName('ul')[0]; //表示获取li下的第一个ul块
+			submenu.style.display = 'none';
+		}
+	</script>
+</body>
+</html>
